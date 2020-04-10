@@ -1,0 +1,21 @@
+{
+  "name": "First_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+},
+"repository": {
+  "type": "git",
+  "url": ""
+},
+  "author": "Deep1292",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dialogflow": "^1.2.0",
+    "express": "^4.17.1",
+    "uuid": "^7.0.2"
+  }
+}
