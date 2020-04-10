@@ -1,2 +1,3 @@
-# hello-world
-first repository
+# React chatbot in Dialogflow
+
+A dialog flow based chatbot 
