@@ -2,7 +2,7 @@ const dialogflow = require('dialogflow');
 const uuid = require('uuid');
 const express = require('express');
 const bodyParser=require('body-parser');
-const port= 5000;
+const port= process.env.PORT||5000;
 const app=express();
 // A unique identifier for the given session
  const sessionId = uuid.v4();
@@ -19,6 +19,8 @@ app.use(function(req,res,next){
 	// pass to next layer of middleware
 	next();
 })
+// use the express-static middleware
+app.use(express.static(__dirname + '/bot-ui'));
 app.post('/send-msg',(req, res)=>{
 	runSample(req.body.MSG).then(data=>{
 		res.send({Reply:data})
