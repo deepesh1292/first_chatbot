@@ -28,11 +28,7 @@ def webhook():
 	
 	if action == 'rntutbase':
 		res = rntut(req)
-		global age,amount,number,disease
-		age = 'a'
-		disease=[]
-		amount='c'
-		number='d'
+		
 		
 		
 	if action == 'rntut.rntut-custom':
@@ -128,6 +124,11 @@ def fallbackagain(req):
 }
 	
 def rntut(req):
+	global age,amount,number,disease
+	age = 'a'
+	disease=[]
+	amount='c'
+	number='d'
 	
 	return {
 	"fulfillmentText": "What would you like to start with?",
