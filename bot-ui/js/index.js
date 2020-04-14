@@ -34,13 +34,13 @@ $(window).load(function () {
   $messages.mCustomScrollbar();
   setTimeout(function () {
     serverMessage(
-      "Hello, Welcome to our Company Website \b  How can I help you? ",
+      "Hello, Welcome to our Company Website. How can I help you? ",
       "",
       ""
       ,""
     );
     speechSynthesis.speak(
-      new SpeechSynthesisUtterance("Hello, Welcome to our Company Website \b  How can I help you? ")
+      new SpeechSynthesisUtterance("Hello, Welcome to our Company Website.  How can I help you? ")
     );
   }, 100);
 });
@@ -187,7 +187,7 @@ function myFunction(val) {
   console.log(val);
 }
 function fetchmsg() {
-  var url = "http://localhost:5000/send-msg";
+  var url = "https://bot-appjs.herokuapp.com/send-msg";
 
   const data = new URLSearchParams();
   for (const pair of new FormData(document.getElementById("mymsg"))) {
