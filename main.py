@@ -430,7 +430,7 @@ def disease_yes_custom(req):
 		parameters = req['queryResult']['parameters']
 		global amount
 		amount = parameters.get('amount')
-		amount = amount['amount']
+		#amount = amount['amount']
 	except:
 		pass
 	return{
@@ -472,6 +472,7 @@ def plan_custom(req):
 	parameters = req['queryResult']['parameters']
 	global plan
 	plan = parameters.get('plan')
+	premium = 65
 	global age,amount,number,disease
 	if age == '18-30' and plan=="1 million":
 		premium = 65 
