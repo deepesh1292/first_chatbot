@@ -489,9 +489,11 @@ def plan_custom(req):
 		premium = 125 
 	elif age == 'greater than 60' and plan=="2 million":
 		premium = 140
-		
-	if disease[0]!="None":
-		premium = premium+len(disease)*10
+	try:
+		if disease[0]!="None":
+			premium = premium+len(disease)*10
+	except:
+		pass
 	if amount =='c':
 		state = "Thanks, based on the information you have provided we suggest - a Level Term Insurance for Life Coverage. As per our calculation you would be needing: ${} for {} Life Coverage".format(premium,plan)
 	else:
