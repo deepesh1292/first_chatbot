@@ -1,7 +1,8 @@
+
+
 # -*- coding: utf-8 -*-
 """
 Created on Mon Mar 30 13:45:07 2020
-
 @author: Deepesh.Shrivastava
 """
 
@@ -428,7 +429,7 @@ def disease_yes(req):
 }
 def disease_yes_custom(req):
 	try:
-		parameters = req['queryResult']['parameters']
+		#parameters = req['queryResult']['parameters']
 		global amount
 		amount = int(req.get('queryResult').get('queryText'))
 		#amount = amount['amount']
@@ -450,7 +451,7 @@ def disease_yes_custom(req):
 }
 def planbase(req):
 	try: 
-		parameters = req['queryResult']['parameters']
+		#parameters = req['queryResult']['parameters']
 		global number
 		number = int(req.get('queryResult').get('queryText'))
 	except:
@@ -522,3 +523,4 @@ def plan_custom(req):
 	
 if __name__ == '__main__':
 	app.run(debug=True, port=5001, host='0.0.0.0')
+
