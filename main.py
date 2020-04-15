@@ -430,7 +430,7 @@ def disease_yes_custom(req):
 	try:
 		parameters = req['queryResult']['parameters']
 		global amount
-		amount = parameters.get('amount')
+		amount = int(req.get('queryResult').get('queryText'))
 		#amount = amount['amount']
 	except:
 		pass
@@ -452,7 +452,7 @@ def planbase(req):
 	try: 
 		parameters = req['queryResult']['parameters']
 		global number
-		number = parameters.get('number')
+		number = int(req.get('queryResult').get('queryText'))
 	except:
 		pass
 	return{
