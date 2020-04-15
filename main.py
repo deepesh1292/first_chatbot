@@ -10,7 +10,11 @@ from flask import Flask, request, make_response, jsonify
 
 app = Flask(__name__)
 global age,amount,number,disease,plan
-
+age = 'a'
+disease=[]
+amount='c'
+number='d'
+plan='e'
 @app.route('/webhook', methods=['GET','POST'])
 
 def webhook():
@@ -88,11 +92,16 @@ def webhook():
 		
 	if action == "plan.plan-custom":
 		res = plan_custom(req)
-		
+		age = 'a'
+		disease=[]
+		amount='c'
+		number='d'
+		plan='e'
 	if action == "input.unknown":
 		res = fallback(req)
 	if action == "DefaultFallbackIntent.DefaultFallbackIntent-fallback":
 		res = fallbackagain(req)
+		
 	return make_response(jsonify(res))
 
 def fallback(req):
@@ -123,13 +132,7 @@ def fallbackagain(req):
 }
 	
 def rntut(req):
-	global age,amount,number,disease,plan
-	age = 'a'
-	disease=[]
-	amount='c'
-	number='d'
-	plan='e'
-	
+		
 	return {
 	"fulfillmentText": "What would you like to start with?",
 	"fulfillmentMessages": [
