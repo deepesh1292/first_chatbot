@@ -92,11 +92,7 @@ def webhook():
 		
 	if action == "plan.plan-custom":
 		res = plan_custom(req)
-		age = 'a'
-		disease=[]
-		amount='c'
-		number='d'
-		plan='e'
+		
 	if action == "input.unknown":
 		res = fallback(req)
 	if action == "DefaultFallbackIntent.DefaultFallbackIntent-fallback":
