@@ -9,11 +9,7 @@ Created on Mon Mar 30 13:45:07 2020
 from flask import Flask, request, make_response, jsonify
 
 app = Flask(__name__)
-age = 'a'
-disease=[]
-amount='c'
-number='d'
-plan='e'
+
 
 @app.route('/webhook', methods=['GET','POST'])
 
@@ -125,11 +121,12 @@ def fallbackagain(req):
 }
 	
 def rntut(req):
-	global age,amount,number,disease
+	global age,amount,number,disease,plan
 	age = 'a'
 	disease=[]
 	amount='c'
 	number='d'
+	plan='e'
 	
 	return {
 	"fulfillmentText": "What would you like to start with?",
@@ -453,7 +450,7 @@ def planbase(req):
 	try: 
 		#parameters = req['queryResult']['parameters']
 		global number
-		number = int(req.get('queryResult').get('queryText'))
+		number = req.get('queryResult').get('queryText')
 	except:
 		pass
 	return{
