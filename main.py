@@ -9,18 +9,18 @@ import json
 from flask import Flask, request, make_response, jsonify
 
 app = Flask(__name__)
-global age,amount,number,disease,plan
+global age,amount,years,disease,plan
 age = 'a'
 disease=[]
 amount='c'
-number='d'
+years='d'
 plan='e'
 @app.route('/webhook', methods=['GET','POST'])
 
 def webhook():
 	""" this method handles the http request for dialogflow webhook
 	This is meant to be in conjunction with insurance bot intent"""
-	global amount, number
+	global amount, years
 	req = request.get_json(silent=True, force=True)
 	try:
 		action=req.get('queryResult').get('action')
@@ -82,10 +82,10 @@ def webhook():
 	if action =="disease.disease-yes":
 		 res = disease_yes(req)
 	if action =="disease.disease-yes.disease-yes-custom":
-		amount = req.get('queryResult').get('queryText')
+		#amount = req.get('queryResult').get('queryText')
 		res = disease_yes_custom(req)
 	if action =="disease.disease-yes.disease-yes-custom.disease-yes-custom-custom":
-		number = req.get('queryResult').get('queryText')
+		#years = req.get('queryResult').get('queryText')
 		res = planbase(req) 
 	if action == "disease.disease-custom":
 		res = planbase(req)
@@ -448,11 +448,11 @@ def disease_yes_custom(req):
 }
 def planbase(req):
 	print(req['queryResult']['queryText'])
-	 
-	#parameters = req['queryResult']['parameters']
-	global number
-	number = req['queryResult']['queryText']
-	print (number)
+	parameters = req['queryResult']['parameters']
+	global years
+	years = parameters.get('years')
+	#years = req['queryResult']['queryText']
+	print (years)
 	
 	return{
 	"fulfillmentText": "You can opt for any of the below coverage amount",
@@ -473,7 +473,7 @@ def plan_custom(req):
 	global plan
 	plan = parameters.get('plan')
 	premium = 65
-	global age,amount,number,disease
+	global age,amount,years,disease
 	if age == '18-30' and plan=="1 million":
 		premium = 65 
 	elif age == '18-30' and plan=="2 million":
@@ -499,11 +499,12 @@ def plan_custom(req):
 	if amount =='c':
 		state = "Thanks, based on the information you have provided we suggest - a Level Term Insurance for Life Coverage. As per our calculation you would be needing: ${} for {} Life Coverage".format(premium,plan)
 	else:
-		state =  "Thanks, based on the information you have provided we suggest two plans - One Level Term Insurance for Life Coverage and another Decreasing Term Insurance for your Mortgage Loan. As per our calculation you would be needing: ${} for {} Life Coverage and amount of ${} for your Credit Insurance for {} years.".format(premium,plan,amount,number)
+		state =  "Thanks, based on the information you have provided we suggest two plans - One Level Term Insurance for Life Coverage and another Decreasing Term Insurance for your Mortgage Loan. As per our calculation you would be needing: ${} for {} Life Coverage and amount of ${} for your Credit Insurance for {} years.".format(premium,plan,amount,years)
 	print(state)
 	print(plan)
 	print(premium)
 	print(amount)
+	print(years)
 	print(disease)
 	return{
 	"fulfillmentText": state,
