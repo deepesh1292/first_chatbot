@@ -428,7 +428,7 @@ def disease_yes_custom(req):
 	try:
 		#parameters = req['queryResult']['parameters']
 		global amount
-		amount = int(req.get('queryResult').get('queryText'))
+		amount = req.get('queryResult').get('queryText')
 		#amount = amount['amount']
 	except:
 		pass
