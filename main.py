@@ -451,6 +451,7 @@ def planbase(req):
 	parameters = req['queryResult']['parameters']
 	global years
 	years = parameters.get('years')
+	years=int(years['amount'])
 	#years = req['queryResult']['queryText']
 	print (years)
 	
