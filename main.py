@@ -426,13 +426,10 @@ def disease_yes(req):
 }
 def disease_yes_custom(req):
 	print(req['queryResult']['queryText'])
-	try:
-		#parameters = req['queryResult']['parameters']
-		global amount
-		amount = req['queryResult']['queryText']
+	global amount
+	amount = req['queryResult']['queryText']
 		#amount = amount['amount']
-	except:
-		pass
+	
 	return{
 	"fulfillmentText": "How many years it would take for you to repay?",
 	"fulfillmentMessages": [
@@ -449,12 +446,11 @@ def disease_yes_custom(req):
 }
 def planbase(req):
 	print(req['queryResult']['queryText'])
-	try: 
-		#parameters = req['queryResult']['parameters']
-		global number
-		number = req['queryResult']['queryText']
-	except:
-		pass
+	 
+	#parameters = req['queryResult']['parameters']
+	global number
+	number = req['queryResult']['queryText']
+	
 	return{
 	"fulfillmentText": "You can opt for any of the below coverage amount",
 	"fulfillmentMessages": [
@@ -496,6 +492,7 @@ def plan_custom(req):
 			premium = premium+len(disease)*10
 	except:
 		pass
+	global amount
 	if amount =='c':
 		state = "Thanks, based on the information you have provided we suggest - a Level Term Insurance for Life Coverage. As per our calculation you would be needing: ${} for {} Life Coverage".format(premium,plan)
 	else:
