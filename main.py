@@ -82,10 +82,10 @@ def webhook():
 	if action =="disease.disease-yes":
 		 res = disease_yes(req)
 	if action =="disease.disease-yes.disease-yes-custom":
-		#amount = req.get('queryResult').get('queryText')
+		amount = req.get('queryResult').get('queryText')
 		res = disease_yes_custom(req)
 	if action =="disease.disease-yes.disease-yes-custom.disease-yes-custom-custom":
-		#years = req.get('queryResult').get('queryText')
+		years = req.get('queryResult').get('queryText')
 		res = planbase(req) 
 	if action == "disease.disease-custom":
 		res = planbase(req)
@@ -450,9 +450,9 @@ def planbase(req):
 	print(req['queryResult']['queryText'])
 	parameters = req['queryResult']['parameters']
 	global years
-	years = parameters.get('years')
-	years=int(years['amount'])
-	#years = req['queryResult']['queryText']
+	#years = parameters.get('years')
+	#years=int(years['amount'])
+	years = req['queryResult']['queryText']
 	print (years)
 	
 	return{
