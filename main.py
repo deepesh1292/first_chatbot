@@ -9,7 +9,7 @@ import json
 from flask import Flask, request, make_response, jsonify
 
 app = Flask(__name__)
-global age,amount,years,disease,plan
+
 age = 'a'
 disease=[]
 amount='c'
@@ -20,7 +20,7 @@ plan='e'
 def webhook():
 	""" this method handles the http request for dialogflow webhook
 	This is meant to be in conjunction with insurance bot intent"""
-	global amount, years
+	global age,amount,years,disease
 	req = request.get_json(silent=True, force=True)
 	try:
 		action=req.get('queryResult').get('action')
@@ -462,7 +462,7 @@ def planbase(req):
 	#years=int(years['amount'])
 	years = req['queryResult']['queryText']
 	print (years)
-	""""
+	"""
 	return{
 	"fulfillmentText": "You can opt for any of the below coverage amount",
 	"fulfillmentMessages": [
