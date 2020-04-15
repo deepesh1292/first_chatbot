@@ -5,7 +5,7 @@
 Created on Mon Mar 30 13:45:07 2020
 @author: Deepesh.Shrivastava
 """
-
+import json
 from flask import Flask, request, make_response, jsonify
 
 app = Flask(__name__)
@@ -425,10 +425,11 @@ def disease_yes(req):
 	]
 }
 def disease_yes_custom(req):
+	print(req['queryResult']['queryText'])
 	try:
 		#parameters = req['queryResult']['parameters']
 		global amount
-		amount = req.get('queryResult').get('queryText')
+		amount = req['queryResult']['queryText']
 		#amount = amount['amount']
 	except:
 		pass
@@ -447,10 +448,11 @@ def disease_yes_custom(req):
 	]
 }
 def planbase(req):
+	print(req['queryResult']['queryText'])
 	try: 
 		#parameters = req['queryResult']['parameters']
 		global number
-		number = req.get('queryResult').get('queryText')
+		number = req['queryResult']['queryText']
 	except:
 		pass
 	return{
