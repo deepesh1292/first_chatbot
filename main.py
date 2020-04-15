@@ -16,7 +16,7 @@ app = Flask(__name__)
 def webhook():
 	""" this method handles the http request for dialogflow webhook
 	This is meant to be in conjunction with insurance bot intent"""
-	
+	global amount, number
 	req = request.get_json(silent=True, force=True)
 	try:
 		action=req.get('queryResult').get('action')
@@ -78,8 +78,10 @@ def webhook():
 	if action =="disease.disease-yes":
 		 res = disease_yes(req)
 	if action =="disease.disease-yes.disease-yes-custom":
+		amount = req.get('queryResult').get('queryText')
 		res = disease_yes_custom(req)
 	if action =="disease.disease-yes.disease-yes-custom.disease-yes-custom-custom":
+		number = req.get('queryResult').get('queryText')
 		res = planbase(req) 
 	if action == "disease.disease-custom":
 		res = planbase(req)
@@ -428,6 +430,7 @@ def disease_yes_custom(req):
 	print(req['queryResult']['queryText'])
 	global amount
 	amount = req['queryResult']['queryText']
+	print (amount)
 		#amount = amount['amount']
 	
 	return{
@@ -450,6 +453,7 @@ def planbase(req):
 	#parameters = req['queryResult']['parameters']
 	global number
 	number = req['queryResult']['queryText']
+	print (number)
 	
 	return{
 	"fulfillmentText": "You can opt for any of the below coverage amount",
