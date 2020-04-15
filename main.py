@@ -82,10 +82,10 @@ def webhook():
 	if action =="disease.disease-yes":
 		 res = disease_yes(req)
 	if action =="disease.disease-yes.disease-yes-custom":
-		amount = req.get('queryResult').get('queryText')
+		amount = amount(req)
 		res = disease_yes_custom(req)
 	if action =="disease.disease-yes.disease-yes-custom.disease-yes-custom-custom":
-		years = req.get('queryResult').get('queryText')
+		years = year(req)
 		res = planbase(req) 
 	if action == "disease.disease-custom":
 		res = planbase(req)
@@ -425,12 +425,16 @@ def disease_yes(req):
 		}
 	]
 }
+def amount(req):
+	y= req['queryResult']['queryText']
+	return y
 def disease_yes_custom(req):
-	print(req['queryResult']['queryText'])
+	"""print(req['queryResult']['queryText'])
 	global amount
 	amount = req['queryResult']['queryText']
 	print (amount)
 		#amount = amount['amount']
+	"""
 	
 	return{
 	"fulfillmentText": "How many years it would take for you to repay?",
@@ -446,15 +450,19 @@ def disease_yes_custom(req):
 		}
 	]
 }
+def year(req):
+	z = req['queryResult']['queryText']
+	return z
+	
 def planbase(req):
-	print(req['queryResult']['queryText'])
+	"""print(req['queryResult']['queryText'])
 	parameters = req['queryResult']['parameters']
 	global years
 	#years = parameters.get('years')
 	#years=int(years['amount'])
 	years = req['queryResult']['queryText']
 	print (years)
-	
+	""""
 	return{
 	"fulfillmentText": "You can opt for any of the below coverage amount",
 	"fulfillmentMessages": [
