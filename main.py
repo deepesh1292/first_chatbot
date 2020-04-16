@@ -473,13 +473,14 @@ def reset():
 	
 def planbase(req):
 	#print(req['queryResult']['queryText'])
-	parameters = req['queryResult']['parameters']
-	global years
-	years = parameters.get('years')
-	years=years['amount']
-	
-	print (years)
-	
+	try:
+		parameters = req['queryResult']['parameters']
+		global years
+		years = parameters.get('years')
+		years=years['amount']
+	except:
+		pass
+		
 	return{
 	"fulfillmentText": "You can opt for any of the below coverage amount",
 	"fulfillmentMessages": [
