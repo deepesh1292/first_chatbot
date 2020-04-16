@@ -89,6 +89,7 @@ def webhook():
 		years = year(req)
 		res = planbase(req) 
 	if action == "disease.disease-custom":
+		reset()
 		res = planbase(req)
 		
 	if action == "plan.plan-custom":
@@ -152,6 +153,7 @@ def rntut(req):
 }
 
 def rntut_custom(req):
+	
 	
 	return {
 	"fulfillmentText": "Sure. Can i ask you for some more details in this regard?",
@@ -463,16 +465,21 @@ def disease_yes_custom(req):
 def year(req):
 	z = req['queryResult']['queryText']
 	return z
+def reset():
+	global amount,years
+	amount = 'c'
+	years='d'
+	return 
 	
 def planbase(req):
-	"""print(req['queryResult']['queryText'])
+	#print(req['queryResult']['queryText'])
 	parameters = req['queryResult']['parameters']
 	global years
-	#years = parameters.get('years')
-	#years=int(years['amount'])
-	years = req['queryResult']['queryText']
+	years = parameters.get('years')
+	years=years['amount']
+	
 	print (years)
-	"""
+	
 	return{
 	"fulfillmentText": "You can opt for any of the below coverage amount",
 	"fulfillmentMessages": [
