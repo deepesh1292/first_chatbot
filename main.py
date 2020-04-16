@@ -82,7 +82,7 @@ def webhook():
 	if action =="disease.disease-yes":
 		 res = disease_yes(req)
 	if action =="disease.disease-yes.disease-yes-custom":
-		amount = amount(req)
+		amount = amounts(req)
 		res = disease_yes_custom(req)
 	if action =="disease.disease-yes.disease-yes-custom.disease-yes-custom-custom":
 		years = year(req)
@@ -393,10 +393,12 @@ def policy_no_custom(req):
 		}
 	]
 }
+def dise(req)
 def diseasebase(req):
 	parameters = req['queryResult']['parameters']
 	global disease
 	disease = parameters.get('disease')
+	print(disease)
 	return{
 	"fulfillmentText": "Do you have a Mortgage Loan?",
 	"fulfillmentMessages": [
@@ -425,8 +427,9 @@ def disease_yes(req):
 		}
 	]
 }
-def amount(req):
-	y= req['queryResult']['queryText']
+
+def amounts(req):
+	y = req['queryResult']['queryText']
 	return y
 def disease_yes_custom(req):
 	"""print(req['queryResult']['queryText'])
