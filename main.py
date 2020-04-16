@@ -78,6 +78,7 @@ def webhook():
 		res = policy_no_custom(req) 
 	
 	if action == "diseasebase":
+		disease = dise(req)
 		res = diseasebase(req)
 	if action =="disease.disease-yes":
 		 res = disease_yes(req)
@@ -393,7 +394,12 @@ def policy_no_custom(req):
 		}
 	]
 }
-def dise(req)
+def dise(req):
+	parameters = req['queryResult']['parameters']
+	global disease
+	disease = parameters.get('disease')
+	return disease
+	
 def diseasebase(req):
 	parameters = req['queryResult']['parameters']
 	global disease
@@ -431,6 +437,7 @@ def disease_yes(req):
 def amounts(req):
 	y = req['queryResult']['queryText']
 	return y
+	
 def disease_yes_custom(req):
 	"""print(req['queryResult']['queryText'])
 	global amount
