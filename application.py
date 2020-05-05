@@ -548,7 +548,5 @@ def plan_custom(req):
 }
 	   
 	
-if __name__ == '__main__':
-	#port = int(os.environ.get("PORT", 5001))
-	app.run()
+
 
